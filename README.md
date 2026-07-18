@@ -1,5 +1,6 @@
 # barbalat-lean
 
+[![thread](https://img.shields.io/badge/%F0%9F%A7%B5-how%20it%20works-1DA1F2)](https://x.com/thevelvetmonke)
 [![Lean 4](https://img.shields.io/badge/Lean-4.28.0-blue)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-v4.28.0-purple)](https://github.com/leanprover-community/mathlib4)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -12,7 +13,15 @@ Lean 4 formal proofs of Barbalat's lemma and a Lyapunov-Barbalat corollary. The 
 
 **Zero sorry statements.** Standard axioms only (`propext`, `Classical.choice`, `Quot.sound`).
 
-## Why it matters
+## What this is, and why it matters
+
+This library formalizes Barbalat's lemma, a tool used in stability theory and adaptive control. Its headline theorem, `lyapunov_barbalat`, proves that a nonnegative signal `phi` tends to zero when it is uniformly continuous and is dominated by the decrease of a differentiable, nonnegative Lyapunov function.
+
+The proof matters because it machine-checks the bridge from an energy inequality to pointwise decay. A derivative bound gives an upper bound on the integral of `phi`; the formalized nonnegative Barbalat lemma then shows that a uniformly continuous signal with bounded accumulated mass cannot keep returning away from zero.
+
+The scope is explicit. The theorem assumes differentiability of the Lyapunov function, its nonnegativity, the derivative inequality, and uniform continuity and nonnegativity of `phi` on the nonnegative real ray. It does not verify those conditions for a concrete dynamical system, and decay of `phi` alone is not a general state-convergence theorem.
+
+## Background and motivation
 
 Barbalat's lemma is a standard tool in stability theory and adaptive control. It converts a regularity assumption and an integral convergence condition into pointwise convergence to zero. Informally, if a uniformly continuous signal has finite accumulated mass on `[0, infinity)`, then it cannot keep making excursions away from zero.
 
